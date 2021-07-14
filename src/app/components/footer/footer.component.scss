@@ -1,0 +1,20 @@
+.wrapper {
+  min-height: 100px;
+  padding: 23px 0;
+  & ul {
+    gap: 23px;
+    & li {
+      & a {
+        font-weight: 100;
+        font-size: rem(18px);
+      }
+    }
+  }
+
+  &.desktop {
+    & ul {
+      flex-direction: row;
+      gap: 45px;
+    }
+  }
+}

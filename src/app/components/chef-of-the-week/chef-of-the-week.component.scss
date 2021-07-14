@@ -1,0 +1,64 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  & .section-title {
+    font-size: rem(18px);
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 37px;
+  }
+
+  & .image-and-description {
+    text-align: center;
+
+    & .img-wrapper {
+      max-width: 433px;
+      margin: 0 auto 20px;
+      & > div {
+        position: relative;
+        & .chef-name {
+          position: absolute;
+          inset: auto 0 4px;
+          padding: 15px 0;
+          font-size: rem(30px);
+          font-weight: 300;
+          text-align: center;
+          background-color: rgba($cream, 0.8);
+        }
+      }
+    }
+
+    & p {
+      font-size: rem(18px);
+      font-weight: 100;
+      line-height: 1.2;
+    }
+  }
+
+  &.desktop {
+    & .section-title {
+      font-size: rem(30px);
+    }
+    & .image-and-description {
+      text-align: unset;
+      flex-direction: row;
+      & .img-wrapper {
+        flex-basis: 50%;
+        padding-right: rem(70px);
+        margin: 0 0 20px;
+        & > div {
+          & .chef-name {
+            font-size: rem(40px);
+          }
+        }
+      }
+
+      & p {
+        flex-basis: 50%;
+        font-size: rem(25px);
+      }
+    }
+  }
+}

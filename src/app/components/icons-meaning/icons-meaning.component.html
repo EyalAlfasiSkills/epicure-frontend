@@ -1,0 +1,9 @@
+<section class="wrapper" ngClass.gt-sm="desktop">
+  <h2 class="section-title">THE MEANING OF OUR ICONS :</h2>
+  <div class="icons-list-container flex justify-center align-center">
+    <div class="icon-container" *ngFor="let icon of icons">
+      <img [src]="icon.iconUrl" alt="icon" />
+      <h4 class="name">{{ icon.name }}</h4>
+    </div>
+  </div>
+</section>

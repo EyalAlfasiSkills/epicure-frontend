@@ -1,0 +1,148 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  text-align: center;
+  min-height: 360px;
+  height: 100%;
+
+  & .outer-title {
+    font-size: rem(18px);
+    padding-bottom: 23px;
+    font-weight: 300;
+  }
+
+  & .dish-img {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+
+  & .inner-titles-container {
+    background-color: $pale-peach;
+    padding: rem(10px) rem(35px);
+    & > *:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    & .inner-title {
+      font-size: rem(32px);
+      font-weight: 300;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+
+    & .inner-description {
+      font-size: rem(18px);
+      font-weight: 100;
+    }
+  }
+
+  & .price-and-icon-container {
+    margin-top: 15px;
+    width: 100%;
+
+    & .icon {
+      margin-bottom: 13px;
+      max-width: 40px;
+    }
+
+    & .lines-and-price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      & .price {
+        font-weight: 300;
+        font-size: rem(25px);
+      }
+      & > span:not(.price) {
+        display: inline-block;
+        height: 1px;
+        flex-grow: 1;
+        background-color: $brown-grey;
+      }
+    }
+  }
+
+  &.signature {
+    & .dish-img {
+      aspect-ratio: unset;
+    }
+    & .inner-titles-container {
+      justify-content: space-between;
+
+      & .inner-title {
+        padding: 0 rem(35px);
+      }
+    }
+  }
+
+  &.popular {
+    & .outer-title {
+      display: none;
+    }
+    & .inner-titles-container {
+      justify-content: center;
+      & .inner-title {
+        padding: 0 rem(35px);
+      }
+    }
+
+    & .price-and-icon-container {
+      display: none;
+    }
+  }
+
+  &.yossi {
+    & .outer-title {
+      display: none;
+    }
+    & .inner-titles-container {
+      & .inner-title {
+        font-size: rem(30px);
+      }
+      & .inner-description {
+        display: none;
+      }
+    }
+
+    & .price-and-icon-container {
+      display: none;
+    }
+  }
+
+  &.desktop {
+    & .outer-title {
+      font-size: rem(30px);
+    }
+    & .dish-img {
+      aspect-ratio: unset;
+    }
+    & .price-and-icon-container {
+      margin-top: 100px;
+    }
+    & .inner-titles-container {
+      & .inner-title {
+        font-size: rem(38px);
+      }
+
+      & .inner-description {
+        font-size: rem(25px);
+      }
+    }
+
+    &.signature {
+      & .inner-titles-container {
+        & .inner-title {
+          padding: 0 rem(55px);
+        }
+      }
+    }
+
+    &.popular {
+      & .inner-titles-container {
+        & .inner-title {
+          padding: 0 rem(55px);
+        }
+      }
+    }
+  }
+}

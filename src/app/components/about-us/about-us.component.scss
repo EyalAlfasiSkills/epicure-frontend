@@ -1,0 +1,85 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  background-color: $white-two;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  text-align: center;
+  & .text-and-logo {
+    margin-bottom: 23px;
+    & .text {
+      & .section-title {
+        margin-bottom: 20px;
+        font-size: rem(18px);
+        font-weight: 100;
+      }
+
+      & p {
+        font-size: rem(16px);
+        margin-bottom: 32px;
+        font-weight: 100;
+        line-height: 1.2;
+      }
+    }
+    & .logo {
+      object-fit: contain;
+      max-width: 135px;
+    }
+  }
+
+  & .download-links {
+    & a {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      align-items: center;
+      border: 1px solid $black;
+      padding: 7.5px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: rem(14px);
+      & h3,
+      h4 {
+        font-weight: 300;
+        letter-spacing: 1.3px;
+      }
+      & h4 {
+        font-size: em(13px);
+      }
+      & h3 {
+        font-size: em(17px);
+      }
+      & .icon {
+        grid-row: span 2;
+        padding-right: 30px;
+      }
+    }
+  }
+
+  &.desktop {
+    text-align: unset;
+    & .text-and-logo {
+      flex-direction: row;
+      & .logo {
+        max-width: 163px;
+      }
+
+      & .text {
+        padding-right: rem(180px);
+        & .section-title {
+          font-size: rem(18px);
+        }
+        & p {
+          margin-bottom: unset;
+          font-size: rem(22px);
+        }
+      }
+    }
+
+    & .download-links {
+      align-self: flex-start;
+    }
+  }
+}

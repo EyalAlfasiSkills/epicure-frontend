@@ -1,0 +1,25 @@
+<section
+  class="wrapper"
+  ngClass.gt-sm="desktop"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
+  <div class="cta" [@mountAnimation]="isOpen ? 'open' : 'closed'">
+    <h1>
+      Epicure works with the top <br />
+      chef restaurants in Tel Aviv
+    </h1>
+    <div class="input-container">
+      <input type="text" placeholder="Search for restaurant cuisine, chef" />
+      <img
+        src="../../../assets/img/search-icon.svg"
+        alt="search icon"
+        class="icon"
+      />
+    </div>
+  </div>
+</section>
+<section class="mobile-cta flex align-center justify-center" ngClass.gt-sm="desktop">
+  <button>CHEFS</button>
+  <button>RESTAURANTS</button>
+</section>

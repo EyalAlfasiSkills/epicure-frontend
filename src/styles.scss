@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+//Application styles setup
+@import './assets/styles/variables.scss';
+@import './assets/styles/mixins.scss';
+@import './assets/styles/fonts.scss';
+@import './assets/styles/base.scss';
+@import './assets/styles/helpers.scss';
+@import './assets/styles/functions.scss';
+@import './assets/styles/layout.scss';
+@import './assets/styles/inputs.scss';
+@import './assets/styles/buttons.scss';
+
+//Swiper styles
+@import './assets/styles/swiper-styles.scss';

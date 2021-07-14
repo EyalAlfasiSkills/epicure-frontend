@@ -1,0 +1,33 @@
+<article
+  class="wrapper"
+  [class.signature]="dishType === 'sig'"
+  [class.popular]="dishType === 'pop'"
+  [class.yossi]="dishType === 'yos'"
+  ngClass.gt-sm="desktop"
+  *ngIf="dish"
+  fxLayout="column"
+>
+  <h3 class="outer-title">{{ dish.outerTitle }}</h3>
+  <img [src]="dish.imgUrl" alt="dish" class="dish-img"/>
+  <div class="inner-titles-container flex column grow">
+    <div>
+      <h3 class="inner-title">
+        {{ dish.innerTitle }}
+      </h3>
+      <h4 class="inner-description">
+        {{ dish.innerDescription }}
+      </h4>
+    </div>
+
+    <div class="price-and-icon-container">
+      <img [src]="dish.icon" alt="icon" class="icon" *ngIf="dish.icon"/>
+      <div class="lines-and-price">
+        <span></span>
+        <span class="price">{{
+          dish.price | currency: "ILS":"symbol":"2.0"
+        }}</span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+</article>

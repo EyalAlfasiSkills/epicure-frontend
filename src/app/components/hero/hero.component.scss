@@ -1,0 +1,81 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  height: calc(100vh - 60px);
+  background-image: url("../../../assets/img/hero-picture@2x.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 0 rem(24px);
+  & .cta {
+    text-align: center;
+    background-color: rgba($white, 0.88);
+    padding: rem(41px) rem(20px);
+    width: 780px;
+
+    & h1 {
+      font-weight: 100;
+      font-size: rem(20px);
+      margin-bottom: 18px;
+    }
+    & .input-container {
+      max-width: rem(270px);
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      & input {
+        @include custom-input(14px);
+        height: 33px;
+        width: 100%;
+        padding: 0 10px 0 30px;
+      }
+
+      & .icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: rem(16px);
+      }
+    }
+  }
+
+  &.desktop {
+    & .cta {
+      padding: rem(41px) rem(20px);
+      & h1 {
+        font-size: rem(35px);
+      }
+
+      & .input-container {
+        max-width: rem(513px);
+
+        & input {
+          @include custom-input(22px);
+          height: 48px;
+          padding: 0 10px 0 50px;
+        }
+        & .icon {
+          max-width: rem(31px);
+        }
+      }
+    }
+  }
+}
+
+.mobile-cta {
+  min-height: 125px;
+  background-color: $white-two;
+  & button {
+    @include custom-button($sand);
+    font-size: rem(13px);
+
+    &:not(:last-child) {
+      margin-right: rem(17px);
+    }
+  }
+
+  &.desktop {
+    display: none;
+  }
+}

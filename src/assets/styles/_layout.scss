@@ -1,0 +1,28 @@
+.main-layout {
+  padding: 0 1rem;
+  @include for-mobile-up {
+    padding: 0 2rem;
+  }
+  @include for-tablet-up {
+    padding: 0 6rem;
+  }
+  @include for-desktop-sm-up {
+    padding: 0 8rem;
+  }
+  @include for-desktop-lg-up {
+    padding: 0 16rem;
+  }
+}
+
+.header-layout {
+  padding: 0 rem(20px);
+  @include for-mobile-up {
+    padding: 0 rem(50px);
+  }
+  @include for-tablet-up {
+    padding: 0 rem(100px);
+  }
+  @include for-desktop-sm-up {
+    padding: 0 rem(120px);
+  }
+}

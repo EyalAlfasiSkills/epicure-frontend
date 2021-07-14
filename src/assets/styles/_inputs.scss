@@ -1,0 +1,16 @@
+.custom-input {
+  background-color: rgba($white, 0);
+  border-radius: 5px;
+  border: 1px solid $black;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: rem(18px);
+  font-weight: 100;
+  &::placeholder {
+    font-size: rem(18px);
+    font-weight: 100;
+  }
+  @include for-mobile-up{
+    font-size: rem(22px);
+  }
+}

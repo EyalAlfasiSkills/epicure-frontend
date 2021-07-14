@@ -1,0 +1,49 @@
+<header
+  class="wrapper header-layout"
+  fxLayout="row"
+  ngClass.gt-sm="desktop"
+  fxLayoutAlign="space-between center"
+>
+ <img src="../../../assets/img/hamburger.svg" alt="hamburger" class="hamburger">
+
+  <nav fxLayout="row">
+    <span class="logo-container" fxLayout="row" fxLayoutAlign="center center">
+      <img src="../../../assets/img/logo@3x.png" alt="logo" class="logo" />
+      <span class="logo-text">EPICURE</span>
+    </span>
+    <ul ngClass.gt-md="flex align-center">
+      <li><a href="#">Restaurants</a></li>
+      <li><a href="#">Chefs</a></li>
+    </ul>
+  </nav>
+
+  <div
+    class="search-and-actions-container"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+  >
+    <div class="input-container">
+      <input type="text" placeholder="Search for restaurant cuisine, chef" />
+      <img
+        src="../../../assets/img/search-icon.svg"
+        alt="search icon"
+        class="icon search-icon"
+      />
+    </div>
+    <img
+      src="../../../assets/img/search-icon.svg"
+      alt="search icon"
+      class="icon search-icon for-mobile"
+    />
+    <img
+      src="../../../assets/img/user-icon.svg"
+      alt="user icon"
+      class="icon user-icon"
+    />
+    <img
+      src="../../../assets/img/bag-icon.svg"
+      alt="bag icon"
+      class="icon bag-icon"
+    />
+  </div>
+</header>

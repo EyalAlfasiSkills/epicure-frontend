@@ -1,0 +1,123 @@
+@mixin for-mobile-down {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-mobile-up {
+  @media (min-width: 600px) {
+    @content;   
+  }
+}
+
+@mixin for-tablet-down {
+  @media (max-width: 959px) {
+    @content;
+  }
+}
+
+@mixin for-tablet-up {
+  @media (min-width: 960px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-sm-down {
+  @media (max-width: 1279px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-sm-up {
+  @media (min-width: 1919px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-lg-down {
+  @media (max-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-lg-up {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+@mixin custom-button(
+  $background-color,
+  $hover-color: mix($background-color, white, 75%)
+) {
+  border: none;
+  padding: 12px 15px;
+  color: $black;
+  background-color: $background-color;
+  transition: background 0.2s ease;
+  font-weight: 300;
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+@mixin fancy-underline($background-color) {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    right: 0;
+    left: 0;
+    width: 0;
+    transition: width 0.2s ease;
+    background-color: $background-color;
+  }
+}
+
+@mixin custom-input($font-size) {
+  background-color: rgba($white, 0);
+  border-radius: 5px;
+  border: 1px solid $black;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: rem($font-size);
+  font-weight: 100;
+  &::placeholder {
+    font-size: rem($font-size);
+    font-weight: 100;
+  }
+  // @include for-mobile-up {
+  //   font-size: rem($font-size + 4px);
+  //   &::placeholder {
+  //     font-size: rem($font-size + 4px);
+  //   }
+  // }
+}

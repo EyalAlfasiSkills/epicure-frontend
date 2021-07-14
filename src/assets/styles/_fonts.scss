@@ -1,0 +1,13 @@
+.font-setup {
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  font-size: 14px;
+  @include for-mobile-up {
+    font-size: 15px;
+  }
+  @include for-desktop-sm-up {
+    font-size: 16px;
+  }
+}
