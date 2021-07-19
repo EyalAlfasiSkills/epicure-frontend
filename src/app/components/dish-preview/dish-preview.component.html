@@ -1,26 +1,29 @@
 <article
   class="wrapper"
-  [class.signature]="dishType === 'sig'"
-  [class.popular]="dishType === 'pop'"
-  [class.yossi]="dishType === 'yos'"
+  [class.dish]="previewType === 'dish'"
   ngClass.gt-sm="desktop"
   *ngIf="dish"
   fxLayout="column"
 >
-  <h3 class="outer-title">{{ dish.outerTitle }}</h3>
-  <img [src]="dish.imgUrl" alt="dish" class="dish-img"/>
+  <h3 class="outer-title">{{ dish.restaurant?.name }}</h3>
+  <img [src]="dish.imgUrl" alt="dish" class="preview-img" />
   <div class="inner-titles-container flex column grow">
     <div>
       <h3 class="inner-title">
-        {{ dish.innerTitle }}
+        {{ dish.name }}
       </h3>
       <h4 class="inner-description">
-        {{ dish.innerDescription }}
+        {{ dish.ingredients }}
       </h4>
     </div>
 
     <div class="price-and-icon-container">
-      <img [src]="dish.icon" alt="icon" class="icon" *ngIf="dish.icon"/>
+      <img
+        *ngFor="let path of iconsPaths"
+        [src]="path"
+        alt="icon"
+        class="icon"
+      />
       <div class="lines-and-price">
         <span></span>
         <span class="price">{{

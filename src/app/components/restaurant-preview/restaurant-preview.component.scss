@@ -1,0 +1,65 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  text-align: center;
+  min-height: 360px;
+  height: 100%;
+
+  & .preview-img {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+  }
+
+  & .inner-titles-container {
+    background-color: $pale-peach;
+    padding: rem(10px) rem(35px);
+    & > *:not(:last-child) {
+      margin-bottom: 5px;
+    }
+    & .inner-title {
+      font-size: rem(32px);
+      font-weight: 300;
+      letter-spacing: 1.8px;
+      margin-bottom: 8px;
+    }
+
+    & .inner-description {
+      font-size: rem(18px);
+      font-weight: 100;
+    }
+  }
+
+  &.restaurant-sm {
+    & .inner-titles-container {
+      & .inner-title {
+        font-size: rem(30px);
+      }
+      & .inner-description {
+        display: none;
+      }
+    }
+  }
+
+  &.desktop {
+    & .preview-img {
+      aspect-ratio: 3.36/2.24;
+    }
+    & .price-and-icon-container {
+      margin-top: 100px;
+    }
+    & .inner-titles-container {
+      & .inner-title {
+        font-size: rem(38px);
+      }
+
+      & .inner-description {
+        font-size: rem(25px);
+      }
+    }
+    &.restaurant-sm {
+      & .preview-img {
+        aspect-ratio: 1/1;
+      }
+    }
+  }
+}

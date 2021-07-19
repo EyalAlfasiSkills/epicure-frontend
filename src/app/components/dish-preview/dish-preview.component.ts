@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dish } from './dish';
+import { Dish } from '../../models/dish/Dish';
 
 @Component({
   selector: 'app-dish-preview',
@@ -9,11 +9,29 @@ import { Dish } from './dish';
 export class DishPreviewComponent implements OnInit {
 
   @Input() dish: Dish | undefined
-  @Input() dishType: string = ''
+  @Input() previewType: string = ''
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  get iconsPaths() {
+    if (this.dish && this.dish.types) {
+      return this.dish.types.map(type => {
+        switch (type) {
+          case 'spicy':
+            return '../../../assets/img/pepper-icon.svg'
+          case 'vegetarian':
+            return '../../../assets/img/vegetarian-icon.svg'
+          case 'vegan':
+            return '../../../assets/img/vegan-icon.svg'
+          default:
+            return type
+        }
+      })
+    }
+    return null
   }
 
 }

@@ -1,0 +1,1 @@
+export type DishType = 'spicy' | 'vegan' | 'vegetarian'

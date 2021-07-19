@@ -15,7 +15,7 @@
     display: none;
   }
 
-  &.yossi {
+  &.restaurant-sm {
     max-width: 710px;
     padding: 60px 0 25px;
     margin: unset;
@@ -44,12 +44,12 @@
         }
       }
     }
-    &.yossi {
+    &.restaurant-sm {
       & .list-link-container {
         display: none;
       }
     }
-    &.signature {
+    &.dish {
       & .list-link-container {
         display: none;
       }

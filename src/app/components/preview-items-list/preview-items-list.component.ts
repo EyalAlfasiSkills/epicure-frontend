@@ -1,20 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dish } from '../dish-preview/dish';
+import { Dish } from 'src/app/models/dish/Dish';
+import { Restaurant } from 'src/app/models/restaurant/Restaurant';
 import SwiperCore, { Navigation, Swiper, Pagination } from 'swiper/core';
 import { PaginationOptions } from 'swiper/types';
 Navigation
 @Component({
-  selector: 'app-dish-list',
-  templateUrl: './dish-list.component.html',
-  styleUrls: ['./dish-list.component.scss']
+  selector: 'app-preview-items-list',
+  templateUrl: './preview-items-list.component.html',
+  styleUrls: ['./preview-items-list.component.scss']
 })
-export class DishListComponent implements OnInit {
+export class PreviewItemsListComponent implements OnInit {
 
   constructor() { }
   @Input() title: string = ''
   @Input() listLinkText: string = ''
-  @Input() dishType: string = ''
-  @Input() dishes: Dish[] = []
+  @Input() previewType: string = ''
+  @Input() items: Restaurant[] | Dish[] | any = []
 
   breakpoints = {
     480: {

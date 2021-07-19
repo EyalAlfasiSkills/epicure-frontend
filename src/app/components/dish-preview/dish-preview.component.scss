@@ -11,7 +11,7 @@
     font-weight: 300;
   }
 
-  & .dish-img {
+  & .preview-img {
     object-fit: cover;
     aspect-ratio: 1/1;
   }
@@ -62,8 +62,8 @@
     }
   }
 
-  &.signature {
-    & .dish-img {
+  &.dish {
+    & .preview-img {
       aspect-ratio: unset;
     }
     & .inner-titles-container {
@@ -75,7 +75,7 @@
     }
   }
 
-  &.popular {
+  &.restaurant {
     & .outer-title {
       display: none;
     }
@@ -113,7 +113,7 @@
     & .outer-title {
       font-size: rem(30px);
     }
-    & .dish-img {
+    & .preview-img {
       aspect-ratio: unset;
     }
     & .price-and-icon-container {

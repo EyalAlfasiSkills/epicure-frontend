@@ -1,0 +1,35 @@
+<section
+  class="wrapper"
+  [class.dish]="previewType === 'dish'"
+  [class.restaurant]="previewType === 'restaurant'"
+  [class.restaurant-sm]="previewType === 'restaurant-sm'"
+  ngClass.gt-sm="desktop"
+>
+  <h2 *ngIf="title" class="section-title">
+    {{ title }}
+  </h2>
+  <swiper
+    [slidesPerView]="previewType === 'dish' ? 1.3 : 1.5"
+    [spaceBetween]="10"
+    [navigation]="true"
+    [breakpoints]="breakpoints"
+    [pagination]="pagination"
+  >
+  <div *ngIf="previewType === 'restaurant' || previewType === 'restaurant-sm'" >
+    <ng-template *ngFor="let item of items" swiperSlide>
+      <app-restaurant-preview [restaurant]="item" [previewType]="previewType"></app-restaurant-preview>
+    </ng-template>
+  </div>
+  <div *ngIf="previewType === 'dish'" >
+    <ng-template *ngFor="let item of items" swiperSlide>
+      <app-dish-preview [dish]="item" [previewType]="previewType"></app-dish-preview>
+    </ng-template>
+  </div>
+  </swiper>
+  <div class="list-link-container flex justify-end">
+    <a href="#">
+      <span>{{ listLinkText }}</span>
+      <img src="../../../assets/img/all-restaurants-arrows.svg" alt="arrows"
+    /></a>
+  </div>
+</section>

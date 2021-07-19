@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import SwiperCore, { Navigation, Swiper, Pagination } from 'swiper/core';
-import { PaginationOptions } from 'swiper/types';
+import { Restaurant } from 'src/app/models/restaurant/Restaurant';
+import { RestaurantService } from 'src/app/services/restaurant-service/restaurant.service';
 
 @Component({
   selector: 'app-chef-of-the-week',
@@ -9,54 +9,25 @@ import { PaginationOptions } from 'swiper/types';
 })
 export class ChefOfTheWeekComponent implements OnInit {
 
-  constructor() { }
+  restaurants: Restaurant[] = []
+
+  constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit(): void {
-    SwiperCore.use([Navigation, Pagination]);
+    this.loadRestaurants()
   }
 
-  restaurants = [
-    {
-      imgUrl: '../../../assets/img/onza.jpg',
-      innerTitle: 'Onza'
-    },
-    {
-      imgUrl: '../../../assets/img/kitchen-market.jpg',
-      innerTitle: 'Kitchen Market'
-    },
-    {
-      imgUrl: '../../../assets/img/mashya.jpg',
-      innerTitle: 'Mashya'
-    },
-    {
-      imgUrl: '../../../assets/img/onza.jpg',
-      innerTitle: 'Onza'
-    },
-    {
-      imgUrl: '../../../assets/img/kitchen-market.jpg',
-      innerTitle: 'Kitchen Market'
-    },
-    {
-      imgUrl: '../../../assets/img/mashya.jpg',
-      innerTitle: 'Mashya'
-    },
-  ]
+  loadRestaurants() {
+    this.restaurantService.restaurants$.subscribe(restaurants => {
+      if (restaurants) {
+        const yossiRestaurants = restaurants.filter(restaurant => restaurant.chef?.name?.toLowerCase().includes('yossi'))
+        console.log(yossiRestaurants);
 
-  breakpoints = {
-    200: {
-      slidesPerView: 1,
-    },
-    480: {
-      slidesPerView: 2,
-    },
-    768: {
-      slidesPerView: 3,
-    },
+        this.restaurants = yossiRestaurants
+      }
+    })
   }
 
-  pagination: PaginationOptions = {
-    type: 'bullets',
-    clickable: true
-  }
+
 
 }

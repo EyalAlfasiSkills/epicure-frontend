@@ -1,0 +1,16 @@
+<article
+  *ngIf="restaurant"
+  class="wrapper"
+  ngClass.gt-sm="desktop"
+  fxLayout="column"
+  [class.restaurant-sm]="previewType === 'restaurant-sm'"
+>
+  <h3 class="outer-title"></h3>
+  <img [src]="restaurant.imgUrl" alt="restaurant" class="preview-img" />
+  <div class="inner-titles-container flex column justify-center grow">
+    <div>
+      <h3 class="inner-title">{{ restaurant.name }}</h3>
+      <h4 class="inner-description">{{ restaurant.chef?.name }}</h4>
+    </div>
+  </div>
+</article>
