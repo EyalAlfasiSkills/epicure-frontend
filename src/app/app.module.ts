@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SwiperModule } from 'swiper/angular';
@@ -38,6 +39,7 @@ import { RestaurantPreviewComponent } from './components/restaurant-preview/rest
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     SwiperModule

@@ -31,7 +31,6 @@ export class HomePageComponent implements OnInit {
     this.restaurantService.loadRestaurants()
     this.restaurantService.restaurants$.subscribe(restaurants => {
       if (restaurants.length) {
-        console.log(restaurants);
         this.popularRestaurants = restaurants.filter(restaurant => restaurant.isPopular)
       }
     }, (err) => {
@@ -43,7 +42,6 @@ export class HomePageComponent implements OnInit {
     this.dishService.loadDishes()
     this.dishService.dishes$.subscribe(dishes => {
       if (dishes.length) {
-        console.log(dishes);
         this.signatureDishes = dishes
       }
     }, (err) => {

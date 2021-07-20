@@ -10,7 +10,30 @@
       chef restaurants in Tel Aviv
     </h1>
     <div class="input-container">
-      <input type="text" placeholder="Search for restaurant cuisine, chef" />
+      <input
+        type="text"
+        placeholder="Search for restaurant cuisine, chef"
+        list="hero-search-input"
+        [(ngModel)]="searchStr"
+        (ngModelChange)="onSearchInput()"
+      />
+      <datalist id="hero-search-input">
+        <option
+          *ngFor="let chef of searchResults?.chefs"
+          [value]="chef.name"
+        ></option>
+
+        <option
+          *ngFor="let dish of searchResults?.dishes"
+          [value]="dish.name"
+        ></option>
+
+        <option
+          *ngFor="let restaurant of searchResults?.restaurants"
+          [value]="restaurant.name"
+        ></option>
+      </datalist>
+
       <img
         src="../../../assets/img/search-icon.svg"
         alt="search icon"
@@ -19,7 +42,10 @@
     </div>
   </div>
 </section>
-<section class="mobile-cta flex align-center justify-center" ngClass.gt-sm="desktop">
+<section
+  class="mobile-cta flex align-center justify-center"
+  ngClass.gt-sm="desktop"
+>
   <button>CHEFS</button>
   <button>RESTAURANTS</button>
 </section>

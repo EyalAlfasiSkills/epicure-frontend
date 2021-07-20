@@ -6,6 +6,8 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { SearchService } from 'src/app/services/search-service/search.service';
+import { SearchResults } from 'src/app/models/search-results/SearchResults';
 
 @Component({
   selector: 'app-hero',
@@ -32,13 +34,28 @@ import {
 })
 export class HeroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   isOpen = false
+  searchResults: SearchResults | null = null
+  searchTimeoutId!: ReturnType<typeof setTimeout>
+  searchStr = ''
 
   ngOnInit(): void {
     setTimeout(() => {
       this.isOpen = true
-    }, 100);
+    }, 200);
+  }
+
+  onSearchInput() {
+    clearTimeout(this.searchTimeoutId)
+    this.searchResults = null
+    this.searchTimeoutId = setTimeout(() => {
+      this.searchService.fetchSearchResults(this.searchStr).subscribe(results => {
+        this.searchResults = results
+      }, (err) => {
+        console.log(err);
+      })
+    }, 2000);
   }
 }

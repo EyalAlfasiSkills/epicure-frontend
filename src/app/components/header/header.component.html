@@ -23,7 +23,29 @@
     fxLayoutAlign="start center"
   >
     <div class="input-container">
-      <input type="text" placeholder="Search for restaurant cuisine, chef" />
+      <input
+      type="text"
+      placeholder="Search for restaurant cuisine, chef"
+      list="header-search-input"
+      [(ngModel)]="searchStr"
+      (ngModelChange)="onSearchInput()"
+    />
+      <datalist id="header-search-input">
+        <option
+          *ngFor="let chef of searchResults?.chefs"
+          [value]="chef.name"
+        ></option>
+
+        <option
+          *ngFor="let dish of searchResults?.dishes"
+          [value]="dish.name"
+        ></option>
+
+        <option
+          *ngFor="let restaurant of searchResults?.restaurants"
+          [value]="restaurant.name"
+        ></option>
+      </datalist>
       <img
         src="../../../assets/img/search-icon.svg"
         alt="search icon"

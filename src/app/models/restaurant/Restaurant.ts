@@ -2,6 +2,7 @@ import { Chef } from "../chef/Chef";
 import { Dish } from "../dish/Dish";
 
 export interface Restaurant {
+    _id: string;
     imgUrl?: string;
     name?: string;
     chef?: Chef;

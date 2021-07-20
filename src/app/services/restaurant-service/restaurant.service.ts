@@ -19,9 +19,7 @@ export class RestaurantService {
 
   loadRestaurants(): void {
     this.http.get<Restaurant[]>(this.BASE_URL).pipe(
-      // map(restaurants => restaurants.filter(restaurant => restaurant.isPopular)),
       tap(restaurants => {
-        console.log(restaurants);
         if (restaurants) {
           this.restaurantsSubject.next(restaurants)
         }
