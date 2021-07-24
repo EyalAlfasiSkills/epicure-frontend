@@ -23,6 +23,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AdminTableRowComponent } from './components/admin-table-row/admin-table-row.component';
 import { AddEntityModalComponent } from './components/add-entity-modal/add-entity-modal.component';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AddEntityModalComponent } from './components/add-entity-modal/add-entit
     AdminPageComponent,
     AdminTableRowComponent,
     AddEntityModalComponent,
+    AdminHeaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,9 @@ import { ChefService } from 'src/app/services/chef-service/chef.service';
 import { DishService } from 'src/app/services/dish-service/dish.service';
 import { RestaurantService } from 'src/app/services/restaurant-service/restaurant.service';
 import { ColumnModel } from 'src/app/models/admin-table/ColumnModel';
+import { ActivatedRoute } from '@angular/router';
+import { FormattedTableEntity } from 'src/app/models/admin-table/FormattedTableEntity';
+import { FormatService } from 'src/app/services/format-service/format.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -21,43 +24,61 @@ export class AdminPageComponent implements OnInit {
     private chefService: ChefService,
     private dishService: DishService,
     private restaurantService: RestaurantService,
-    private fb: FormBuilder
+    private formatService: FormatService,
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
 
-  ) { }
+  ) {
+    this.currentTableType = this.activatedRoute.snapshot.data.table
+  }
 
-  chefs: ChefModel[] | any = []
-  dishes: DishModel[] | any = []
-  restaurants: RestaurantModel[] | any = []
+  // chefs: ChefModel[] | any = []
+  // dishes: DishModel[] | any = []
+  // restaurants: RestaurantModel[] | any = []
 
-  currentTableType: TableType = "chef"
+
+  entities: { chef: FormattedTableEntity[], dish: FormattedTableEntity[], restaurant: FormattedTableEntity[] } = {
+    chef: [],
+    dish: [],
+    restaurant: []
+  }
+
+  currentTableType: TableType
 
   isModalOpen = false;
 
-  chefForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    about: [''],
-    imgUrl: ['']
-  })
-
-  dishForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    ingredients: ['', Validators.required],
-    price: [10, Validators.required],
-    imgUrl: [''],
-    types: this.fb.group({
-      spicy: [false],
-      vegan: [false],
-      vegeterian: [false]
+  editForms = {
+    chef: this.fb.group({
+      name: ['', Validators.required],
+      about: [''],
+      imgUrl: ['']
     })
-  })
+    ,
+    dish: this.fb.group({
+      name: ['', Validators.required],
+      ingredients: ['', Validators.required],
+      price: [10, Validators.required],
+      imgUrl: [''],
+      types: this.fb.group({
+        spicy: [false],
+        vegan: [false],
+        vegeterian: [false]
+      })
+    }),
 
-  restaurantForm: FormGroup = this.fb.group({
-    name: ['', Validators.required],
-    chef: [null, Validators.required],
-    imgUrl: ['']
-  })
+    restaurant: this.fb.group({
+      name: ['', Validators.required],
+      chef: [null, Validators.required],
+      imgUrl: ['']
+    })
+  }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(({ entity }) => {
+      console.log(entity);
+
+      this.currentTableType = entity
+    })
     this.initializeTables()
   }
 
@@ -68,11 +89,14 @@ export class AdminPageComponent implements OnInit {
       this.restaurantService.restaurants$
     ])
     allEntities$.subscribe(([chefs, dishes, restaurants]) => {
-      console.log(this.chefService.formatChefsForAdminTable(chefs, { about: true, restaurants: true }));
-
-      if (chefs) this.chefs = this.chefService.formatChefsForAdminTable(chefs, { about: true, restaurants: true })
-      if (dishes) this.dishes = this.dishService.formatDishesForAdminTable(dishes, { restaurant: true, ingredients: true, price: true, types: true })
-      if (restaurants) this.restaurants = this.restaurantService.formatRestaurantsForAdminTable(restaurants, { chef: true, dishes: true })
+      const formattedChefs = this.formatService.formatChefsForAdminTable(chefs, { about: true, restaurants: true })
+      const formattedDishes = this.formatService.formatChefsForAdminTable(dishes, { restaurant: true, ingredients: true, price: true, types: true })
+      const formattedRestaurants = this.formatService.formatChefsForAdminTable(restaurants, { chef: true, dishes: true })
+      this.entities = {
+        chef: formattedChefs,
+        dish: formattedDishes,
+        restaurant: formattedRestaurants
+      }
     }, (err) => {
       console.log(err);
     })
@@ -84,19 +108,11 @@ export class AdminPageComponent implements OnInit {
 
   onCloseModal() {
     this.isModalOpen = false;
+    this.editForms[this.currentTableType].reset()
   }
 
   get currentTableItems() {
-    switch (this.currentTableType) {
-      case 'chef':
-        return this.chefs
-      case 'dish':
-        return this.dishes
-      case 'restaurant':
-        return this.restaurants
-      default:
-        return []
-    }
+    return this.entities[this.currentTableType]
   }
 
   get currentTableHeader() {
@@ -113,17 +129,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   get currentForm() {
-    switch (this.currentTableType) {
-      case 'chef':
-        return this.chefForm
-      case 'dish':
-        return this.dishForm
-      case 'restaurant':
-        return this.restaurantForm
-      default:
-        return this.chefForm
-    }
-
+    return this.editForms[this.currentTableType]
   }
 
   onFormSubmit() {
@@ -132,10 +138,10 @@ export class AdminPageComponent implements OnInit {
         this.onAddChef()
         break
       case 'dish':
-        console.log(this.dishForm);
+        console.log(this.editForms.dish);
         break
       case 'restaurant':
-        console.log(this.restaurantForm);
+        console.log(this.editForms.restaurant);
         break
       default:
         break
@@ -143,7 +149,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   onAddChef() {
-    const formData = this.chefForm.value
+    const formData = this.editForms.chef.value
     this.chefService.addChef(formData, () => {
       this.onCloseModal()
     })

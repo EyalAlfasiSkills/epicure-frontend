@@ -32,42 +32,6 @@ export class ChefService {
     ).subscribe(res => 'Fetched successfully')
   }
 
-  formatChefsForAdminTable(chefs: ChefModel[], propertiesToInclude: any) {
-    return chefs.map((chef) => {
-      const newChef: {
-        _id: string,
-        columns: ColumnModel[],
-        name: string,
-        imgUrl: string
-      } = {
-        _id: chef._id,
-        columns: [],
-        name: chef.name,
-        imgUrl: chef.imgUrl
-      }
-      const chefColumns = Object.entries(chef).reduce((acc: ColumnModel[], [key, value]: [key: string, value: any]): ColumnModel[] => {
-        if (Boolean(propertiesToInclude[key])) {
-          let columnName = key.charAt(0).toUpperCase() + key.slice(1).toLowerCase()
-          let columnType = 'text';
-          let columnValue = value;
-          if (key === 'restaurants') {
-            columnValue = value.map((rest: any) => rest.name).join(', ')
-          }
-          const column: ColumnModel = {
-            columnName,
-            columnType,
-            columnValue
-          }
-          acc.push(column)
-          return acc
-        }
-        return acc
-      }, [])
-      newChef.columns = chefColumns
-      return newChef
-    })
-  }
-
   addChef(chefData: ChefModel, cb?: Function) {
     this.http.post<ChefModel>(this.BASE_URL, chefData).pipe(
       take(1)

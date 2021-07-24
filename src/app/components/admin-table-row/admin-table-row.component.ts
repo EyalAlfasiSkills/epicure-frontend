@@ -18,7 +18,7 @@ export class AdminTableRowComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.item);
+    // console.log(this.item);
     
   }
 

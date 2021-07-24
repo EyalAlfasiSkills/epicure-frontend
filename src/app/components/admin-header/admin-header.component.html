@@ -1,0 +1,17 @@
+<header class="wrapper flex align center" ngClass.gt-sm="desktop">
+  <button class="open-nav-btn" (click)="toggleNav()">Menu</button>
+  <nav [class.open]="isNavOpen">
+    <button class="close-nav-btn" (click)="toggleNav()">Close</button>
+    <ul>
+      <li>
+        <a routerLink="/admin/chef" routerLinkActive="active-nav-link">Chefs</a>
+      </li>
+      <li>
+        <a routerLink="/admin/dish" routerLinkActive="active-nav-link">Dishes</a>
+      </li>
+      <li>
+        <a routerLink="/admin/restaurant" routerLinkActive="active-nav-link">Restaurant</a>
+      </li>
+    </ul>
+  </nav>
+</header>

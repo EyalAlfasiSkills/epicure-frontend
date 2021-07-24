@@ -1,38 +1,25 @@
 <div class="wrapper">
-  <header class="flex align-center justify-center">Admin page</header>
-  <select
-    [(ngModel)]="currentTableType"
-    name="table-type"
-  >
-    <option value="chef">Chefs</option>
-    <option value="dish">Dishes</option>
-    <option value="restaurant">Restaurants</option>
-  </select>
+  <app-admin-header></app-admin-header>
   <div class="table">
     <button class="add-btn" (click)="onOpenModal()">
       Add a {{ currentTableType }} +
     </button>
-    <div class="table-inner-container">
-      <div
-        class="table-head"
-        [class.chef]="currentTableType === 'chef'"
-        [class.dish]="currentTableType === 'dish'"
-        [class.restaurant]="currentTableType === 'restaurant'"
-      >
-        <span class="table-data-cell img-header-place-holder"></span>
-        <span
-          *ngFor="let section of currentTableHeader"
-          class="table-data-cell"
-          >{{ section }}</span
-        >
-      </div>
-      <app-admin-table-row
-        *ngFor="let item of currentTableItems"
-        [tableType]="currentTableType"
-        [item]="item"
-        (deleteItem)="onDeleteItem($event)"
-      ></app-admin-table-row>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th *ngFor="let section of currentTableHeader">{{ section }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <app-admin-table-row
+          *ngFor="let item of currentTableItems"
+          [tableType]="currentTableType"
+          [item]="item"
+          (deleteItem)="onDeleteItem($event)"
+        ></app-admin-table-row>
+      </tbody>
+    </table>
   </div>
 </div>
 <app-add-entity-modal

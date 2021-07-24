@@ -1,26 +1,19 @@
-<div
-  class="table-row"
-  [class.chef]="tableType === 'chef'"
-  [class.dish]="tableType === 'dish'"
-  [class.restaurant]="tableType === 'restaurant'"
->
-  <span class="table-data-cell">
+<tr class="table-row">
+  <td>
     <img
       [src]="item.imgUrl || '../../../assets/img/logo@3x.png'"
       alt="thumbnail"
     />
-  </span>
-  <span class="table-data-cell">
+  </td>
+  <td>
     <span>{{ item.name }}</span>
-  </span>
-  <span class="table-data-cell" *ngFor="let column of item.columns">
-    <span *ngIf="column.columnType === 'text'">{{ column.columnValue }}</span>
-  </span>
+  </td>
+  <td *ngFor="let column of item.columns">
+    <span>{{ column.columnValue }}</span>
+  </td>
 
-  <!-- Actions -->
-  <div class="actions-container">
+  <td>
     <button (click)="onDeleteItem()">Delete</button>
     <button>Edit</button>
-  </div>
-  <!-- Actions -->
-</div>
+  </td>
+</tr>

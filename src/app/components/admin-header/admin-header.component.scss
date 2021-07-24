@@ -1,0 +1,55 @@
+@import "../../../styles.scss";
+
+header.wrapper {
+  background-color: $pale-peach;
+  min-height: 60px;
+  & nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    min-width: 250px;
+    background-color: $white;
+    transition: transform 0.4s ease;
+    transform: translateX(-100%);
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+
+  &.desktop {
+    & .open-nav-btn,
+    .close-nav-btn {
+      display: none;
+    }
+    justify-content: center;
+    & nav {
+      position: unset;
+      height: unset;
+      min-width: unset;
+      background-color: unset;
+      transition: unset;
+      transform: unset;
+      display: flex;
+
+      & ul {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+
+        & li {
+          & a {
+              padding: 4px 8px;
+              border-radius: 4px;
+            &.active-nav-link {
+              background-color: $dark-peach;
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

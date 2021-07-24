@@ -9,7 +9,10 @@ const routes: Routes = [
   { path: "home", component: HomePageComponent, pathMatch: "full", data: { animation: 'Home' } },
   { path: "login", component: LoginPageComponent, pathMatch: "full", data: { animation: 'Login' } },
   {
-    path: "admin", component: AdminPageComponent, pathMatch: "full", data: { animation: 'Admin' }
+    path: "admin", redirectTo: 'admin/chef',
+  },
+  {
+    path: "admin/:entity", component: AdminPageComponent, pathMatch: "full", data: { animation: 'Admin' }
   },
 ];
 
