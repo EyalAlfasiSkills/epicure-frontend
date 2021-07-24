@@ -1,9 +1,9 @@
-import { Chef } from "../chef/Chef";
-import { Dish } from "../dish/Dish";
-import { Restaurant } from "../restaurant/Restaurant";
+import { ChefModel } from "../chef/ChefModel";
+import { DishModel } from "../dish/DishModel";
+import { RestaurantModel } from "../restaurant/RestaurantModel";
 
 export interface SearchResults {
-    chefs: Chef[],
-    dishes: Dish[],
-    restaurants: Restaurant[]
+    chefs: ChefModel[],
+    dishes: DishModel[],
+    restaurants: RestaurantModel[]
 }

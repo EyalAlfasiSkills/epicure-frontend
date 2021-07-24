@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { TestPageComponent } from './pages/test-page/test-page.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   { path: "", redirectTo: 'home', pathMatch: "full" },
-  { path: "home", component: HomePageComponent, pathMatch: "full", data: { animation: 'fade' } },
-  { path: "test", component: TestPageComponent, pathMatch: "full", data: { animation: 'fade' } },
+  { path: "home", component: HomePageComponent, pathMatch: "full", data: { animation: 'Home' } },
+  { path: "login", component: LoginPageComponent, pathMatch: "full", data: { animation: 'Login' } },
+  {
+    path: "admin", component: AdminPageComponent, pathMatch: "full", data: { animation: 'Admin' }
+  },
 ];
 
 @NgModule({

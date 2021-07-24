@@ -1,0 +1,54 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  min-height: 100vh;
+  background-color: $pale-peach;
+  padding: rem(48px);
+  & .form-container {
+    min-height: 500px;
+    background-color: $pale-peach;
+    width: 400px;
+    padding: rem(24px) rem(16px);
+    box-shadow: rgba($dark-peach, 0.4) 5px 5px, rgba($dark-peach, 0.3) 10px 10px,
+      rgba($dark-peach, 0.2) 15px 15px, rgba($dark-peach, 0.1) 20px 20px,
+      rgba($dark-peach, 0.05) 25px 25px, rgba($black, 0.05) -3px -3px 40px;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: rgba($dark-peach, 0.4) 10px 10px,
+        rgba($dark-peach, 0.3) 20px 20px, rgba($dark-peach, 0.2) 30px 30px,
+        rgba($dark-peach, 0.1) 40px 40px, rgba($dark-peach, 0.05) 50px 50px,
+        rgba($black, 0.05) -3px -3px 40px;
+    }
+
+    & .logo {
+      max-width: 100px;
+      margin-bottom: 24px;
+    }
+
+    & .title {
+      font-weight: 100;
+      font-size: rem(48px);
+      letter-spacing: 3px;
+    }
+
+    & form {
+      & input {
+        @extend .custom-input;
+        padding: 8px;
+        &:not(:last-child) {
+          margin-bottom: 24px;
+        }
+      }
+
+      & button {
+        @include custom-button($dark-peach, $white);
+        font-size: rem(24px);
+      }
+
+      & .error-box {
+        min-height: 50px;
+      }
+    }
+  }
+}

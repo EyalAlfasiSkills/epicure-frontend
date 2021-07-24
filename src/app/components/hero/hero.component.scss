@@ -68,7 +68,7 @@
   min-height: 125px;
   background-color: $white-two;
   & button {
-    @include custom-button($sand);
+    @include custom-button($sand,$black);
     font-size: rem(13px);
 
     &:not(:last-child) {

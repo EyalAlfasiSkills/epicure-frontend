@@ -6,7 +6,7 @@
 
 @mixin for-mobile-up {
   @media (min-width: 600px) {
-    @content;   
+    @content;
   }
 }
 
@@ -74,16 +74,21 @@
 
 @mixin custom-button(
   $background-color,
-  $hover-color: mix($background-color, white, 75%)
+  $color,
+  $hover-color: mix($background-color, white, 50%)
 ) {
   border: none;
   padding: 12px 15px;
-  color: $black;
+  color: $color;
   background-color: $background-color;
   transition: background 0.2s ease;
   font-weight: 300;
   &:hover {
     background-color: $hover-color;
+  }
+  &:disabled{
+    background-color: $hover-color;
+    cursor: default;
   }
 }
 

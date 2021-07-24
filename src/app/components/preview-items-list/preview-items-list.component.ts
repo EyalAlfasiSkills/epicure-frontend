@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dish } from 'src/app/models/dish/Dish';
-import { Restaurant } from 'src/app/models/restaurant/Restaurant';
+import { DishModel } from 'src/app/models/dish/DishModel';
+import { RestaurantModel } from 'src/app/models/restaurant/RestaurantModel';
 import SwiperCore, { Navigation, Swiper, Pagination } from 'swiper/core';
 import { PaginationOptions } from 'swiper/types';
 Navigation
@@ -15,7 +15,7 @@ export class PreviewItemsListComponent implements OnInit {
   @Input() title: string = ''
   @Input() listLinkText: string = ''
   @Input() previewType: string = ''
-  @Input() items: Restaurant[] | Dish[] | any = []
+  @Input() items: RestaurantModel[] | DishModel[] | any = []
 
   breakpoints = {
     480: {

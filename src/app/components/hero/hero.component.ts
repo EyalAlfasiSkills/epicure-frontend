@@ -56,6 +56,6 @@ export class HeroComponent implements OnInit {
       }, (err) => {
         console.log(err);
       })
-    }, 2000);
+    }, 500);
   }
 }

@@ -1,5 +1,5 @@
-<app-header></app-header>
+<app-header *ngIf="router.url == '/home'"></app-header>
 <main [@routeAnimations]="prepareRoute(outlet)" [@.disabled]="isAnimationDisabled">
   <router-outlet #outlet="outlet"></router-outlet>
 </main>
-<app-footer></app-footer>
+<app-footer *ngIf="router.url == '/home'"></app-footer>

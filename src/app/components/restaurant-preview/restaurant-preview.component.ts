@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Restaurant } from 'src/app/models/restaurant/Restaurant';
+import { RestaurantModel } from 'src/app/models/restaurant/RestaurantModel';
 
 @Component({
   selector: 'app-restaurant-preview',
@@ -8,7 +8,7 @@ import { Restaurant } from 'src/app/models/restaurant/Restaurant';
 })
 export class RestaurantPreviewComponent implements OnInit {
 
-  @Input() restaurant!: Restaurant
+  @Input() restaurant!: RestaurantModel
   @Input() previewType: string = ''
 
 

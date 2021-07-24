@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dish } from '../../models/dish/Dish';
+import { DishModel } from '../../models/dish/DishModel';
 
 @Component({
   selector: 'app-dish-preview',
@@ -8,7 +8,7 @@ import { Dish } from '../../models/dish/Dish';
 })
 export class DishPreviewComponent implements OnInit {
 
-  @Input() dish: Dish | undefined
+  @Input() dish: DishModel | undefined
   @Input() previewType: string = ''
 
   constructor() { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chef } from 'src/app/models/chef/Chef';
+import { ChefModel } from 'src/app/models/chef/ChefModel';
 import { ChefOfTheWeek } from 'src/app/models/chef/ChefOfTheWeek';
 import { ChefService } from 'src/app/services/chef-service/chef.service';
 
@@ -10,7 +10,7 @@ import { ChefService } from 'src/app/services/chef-service/chef.service';
 })
 export class ChefOfTheWeekComponent implements OnInit {
 
-  chefOfTheWeek!: Chef;
+  chefOfTheWeek!: ChefModel;
 
   constructor(private chefService: ChefService) { }
 

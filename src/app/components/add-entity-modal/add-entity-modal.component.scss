@@ -1,0 +1,55 @@
+@import "../../../styles.scss";
+
+.wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: rgba($black, 0.5);
+  animation: fade-in 0.4s ease;
+}
+.modal-container {
+  padding: 1.2rem;
+  background-color: $cream;
+  min-height: 300px;
+  width: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+
+  & form {
+    & *:not(:last-child) {
+      margin-bottom: 8px;
+    }
+
+    & label {
+      font-weight: 300;
+      &::first-letter{
+        text-transform: uppercase;
+      }
+      & input {
+        margin-top: 8px;
+      }
+    }
+
+    & input:not([type="checkbox"]),textarea {
+      @extend .custom-input;
+      width: 100%;
+      padding: 2px 8px;
+    }
+
+    & .submit-btn{
+      margin-top: 16px;
+      @include custom-button($dark-peach,$white)
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

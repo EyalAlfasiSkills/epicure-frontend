@@ -1,0 +1,48 @@
+@import "../../../styles.scss";
+
+:host {
+  min-width: 1280px;
+  display: block;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.table-row {
+  background-color: $light-grey;
+  padding: 8px;
+  display: grid;
+  width: 100%;
+  & .table-data-cell {
+    padding: 8px;
+    &:not(:last-child) {
+      margin-inline-end: 8px;
+    }
+    &.img-cell {
+      max-width: 100px;
+      img {
+        object-fit: cover;
+        aspect-ratio: 1.2/1;
+      }
+    }
+  }
+
+  & .actions-container {
+    & button {
+      @include custom-button($pale-peach, $black);
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &.chef {
+    grid-template-columns: 100px 200px 200px minmax(200px, 1fr) 200px;
+  }
+  &.dish {
+    grid-template-columns: 100px 200px 200px 200px minmax(200px, 1fr) 100px 200px;
+  }
+  &.restaurant {
+    grid-template-columns: 100px 200px 200px minmax(200px, 1fr) 200px;
+  }
+}

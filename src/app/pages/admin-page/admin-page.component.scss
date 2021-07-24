@@ -1,0 +1,44 @@
+@import "../../../styles.scss";
+
+header {
+  background-color: $cream;
+  font-size: 2rem;
+  padding: 16px;
+}
+
+.table {
+  max-width: 1280px;
+  margin: auto;
+  & .add-btn {
+    @include custom-button($dark-peach, $white);
+  }
+  & .table-head {
+    display: grid;
+    padding: 8px;
+    min-width: 1280px;
+    & .img-header-place-holder {
+      max-width: 100px;
+    }
+
+    & .table-data-cell {
+      padding: 8px;
+      &:not(:last-child) {
+        margin-inline-end: 8px;
+      }
+    }
+
+    &.chef {
+      grid-template-columns: 100px 200px 200px minmax(200px, 1fr) 200px;
+    }
+    &.dish {
+      grid-template-columns: 100px 200px 200px 200px minmax(200px, 1fr) 100px 200px;
+    }
+    &.restaurant {
+      grid-template-columns: 100px 200px 200px minmax(200px, 1fr) 200px;
+    }
+  }
+
+  & .table-inner-container {
+    overflow-x: auto;
+  }
+}

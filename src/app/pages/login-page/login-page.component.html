@@ -1,0 +1,29 @@
+<div class="wrapper flex justify-center align-center">
+  <div class="form-container flex column align-center">
+    <img
+      class="logo"
+      src="../../../assets/img/logo@3x.png"
+      alt="Epicure logo"
+    />
+    <h1 class="title">Epicure</h1>
+    <form
+      class="flex column align-center justify-center grow"
+      (submit)="onSubmit()"
+    >
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="email"
+        name="email"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        [(ngModel)]="password"
+        name="password"
+      />
+      <div class="error-box">{{ errorStr }}</div>
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+</div>
