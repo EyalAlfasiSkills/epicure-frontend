@@ -14,16 +14,26 @@ export class AdminTableRowComponent implements OnInit {
   @Input() tableType!: TableType
   @Input() item!: ChefModel | DishModel | RestaurantModel | any;
   @Output() deleteItem = new EventEmitter<string>()
+  @Output() editItem = new EventEmitter<string>()
 
   constructor() { }
 
   ngOnInit(): void {
-    // console.log(this.item);
-    
+  }
+
+  onEditItem() {
+    this.editItem.emit(this.item._id)
   }
 
   onDeleteItem() {
     this.deleteItem.emit(this.item._id)
+  }
+
+  getStrOfNames(items: RestaurantModel[] | DishModel[]): string {
+    if (items.length) {
+      return items.map((item: RestaurantModel | DishModel) => item.name).join(', ')
+    }
+    return ''
   }
 
 }

@@ -1,27 +1,17 @@
-<!-- <div class="wrapper" (click)="onCloseModal()" ></div> -->
 <div class="wrapper" (click)="onCloseModal()" *ngIf="isOpen"></div>
-<!-- <div class="modal-container"> -->
 <div *ngIf="isOpen" class="modal-container">
   <form [formGroup]="form" class="flex column" (ngSubmit)="onFormSubmit()">
-    <!-- Chef form fields -->
-    <label *ngIf="formType === 'chef'">
+    <label>
       Name
       <input type="text" formControlName="name" />
+    </label>
+    <label>
+      Image URL
+      <input type="text" formControlName="imgUrl" />
     </label>
     <label *ngIf="formType === 'chef'">
       About
       <textarea formControlName="about" cols="30" rows="4"></textarea>
-    </label>
-    <label *ngIf="formType === 'chef'">
-      Image URL
-      <input type="text" formControlName="imgUrl" />
-    </label>
-    <!-- Chef form fields -->
-
-    <!-- Dish form fields -->
-    <label *ngIf="formType === 'dish'">
-      Name
-      <input type="text" formControlName="name" />
     </label>
     <label *ngIf="formType === 'dish'">
       Ingredients
@@ -32,8 +22,15 @@
       <input type="number" min="10" formControlName="price" />
     </label>
     <label *ngIf="formType === 'dish'">
-      Image URL
-      <input type="text" formControlName="imgUrl" />
+      Restaurant
+      <select formControlName="restaurant">
+        <option
+          *ngFor="let restaurant of entities.restaurant"
+          [value]="restaurant._id"
+        >
+          {{ restaurant.name }}
+        </option>
+      </select>
     </label>
     <div class="flex column" formGroupName="types" *ngIf="formType === 'dish'">
       <label *ngFor="let type of form.get('types')?.value | keyvalue">
@@ -45,26 +42,14 @@
         />
       </label>
     </div>
-    <!-- Dish form fields -->
-
-    <!-- Restaurant form fields -->
-    <label *ngIf="formType === 'restaurant'">
-      Name
-      <input type="text" formControlName="name" />
-    </label>
     <label *ngIf="formType === 'restaurant'">
       Chef
       <select formControlName="chef">
-        <option *ngFor="let chef of items" [value]="chef._id">
+        <option *ngFor="let chef of entities.chef" [value]="chef._id">
           {{ chef.name }}
         </option>
       </select>
     </label>
-    <label *ngIf="formType === 'restaurant'">
-      Image URL
-      <input type="text" formControlName="imgUrl" />
-    </label>
-    <!-- Restaurant form fields -->
 
     <button class="submit-btn" [disabled]="!form.valid">Submit</button>
   </form>

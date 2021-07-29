@@ -1,19 +1,44 @@
 <tr class="table-row">
-  <td>
-    <img
-      [src]="item.imgUrl || '../../../assets/img/logo@3x.png'"
-      alt="thumbnail"
-    />
+  <!-- Every type has img and name -->
+  <td class="table-data-cell img-cell">
+    <img [src]="item.imgUrl || '../../../assets/img/logo@3x.png'" alt="" />
   </td>
-  <td>
-    <span>{{ item.name }}</span>
-  </td>
-  <td *ngFor="let column of item.columns">
-    <span>{{ column.columnValue }}</span>
-  </td>
+  <td>{{ item.name }}</td>
+  <!-- Every type has img and name -->
 
-  <td>
-    <button (click)="onDeleteItem()">Delete</button>
-    <button>Edit</button>
+  <!-- Chef properties -->
+  <td *ngIf="tableType === 'chef'">{{ item.about }}</td>
+  <td *ngIf="tableType === 'chef'">
+    {{ getStrOfNames(item.restaurants) }}
   </td>
+  <!-- Chef properties -->
+
+  <!-- Dish properties -->
+  <td *ngIf="tableType === 'dish'">
+    {{ item.restaurant?.name }}
+  </td>
+  <td *ngIf="tableType === 'dish'">
+    {{ item.ingredients }}
+  </td>
+  <td *ngIf="tableType === 'dish'">{{ item.price }}</td>
+  <td *ngIf="tableType === 'dish'">
+    {{ item.types.join(", ") }}
+  </td>
+  <!-- Dish properties -->
+
+  <!-- Restaurant properties -->
+  <td *ngIf="tableType === 'restaurant'">
+    {{ item.chef?.name }}
+  </td>
+  <td *ngIf="tableType === 'restaurant'">
+    {{ getStrOfNames(item.dishes) }}
+  </td>
+  <!-- Restaurant properties -->
+
+  <!-- Actions -->
+  <td class="actions-container">
+    <button (click)="onDeleteItem()">Delete</button>
+    <button (click)="onEditItem()">Edit</button>
+  </td>
+  <!-- Actions -->
 </tr>

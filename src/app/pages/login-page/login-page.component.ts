@@ -17,27 +17,24 @@ export class LoginPageComponent implements OnInit {
   errorStr = ''
 
   ngOnInit(): void {
-    this.loggedInUserListener()
+    if (this.auth.isLoggedIn) {
+      this.router.navigate(['admin'])
+    }
   }
 
   onSubmit(): void {
     if (this.email && this.password) {
-      this.auth.login({ password: this.password, email: this.email }).subscribe(({ user, accessToken }) => {
-        if (user && accessToken) {
+      this.auth.login({ password: this.password, email: this.email }).subscribe((userData) => {
+        console.log(userData);
+        const { accessToken, refreshToken, idToken } = userData.response.token
+        if (accessToken && refreshToken) {
           console.log('Logged in successfully');
+          this.router.navigate(['admin'])
         }
       }, (err) => {
         console.log(err);
       })
     }
-  }
-
-  loggedInUserListener() {
-    this.auth.loggedInUser$.subscribe(user => {
-      if (user) {
-        this.router.navigate(['admin'])
-      }
-    })
   }
 
 }

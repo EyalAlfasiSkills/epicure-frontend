@@ -9,5 +9,5 @@ export interface DishModel {
     ingredients: string;
     price: number;
     isSignature: boolean;
-    types?: DishType[]
+    types: DishType[]
 }

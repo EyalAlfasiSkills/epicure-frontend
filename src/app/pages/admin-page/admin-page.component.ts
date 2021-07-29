@@ -28,22 +28,17 @@ export class AdminPageComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute
 
-  ) {
-    this.currentTableType = this.activatedRoute.snapshot.data.table
-  }
+  ) { }
 
-  // chefs: ChefModel[] | any = []
-  // dishes: DishModel[] | any = []
-  // restaurants: RestaurantModel[] | any = []
-
-
-  entities: { chef: FormattedTableEntity[], dish: FormattedTableEntity[], restaurant: FormattedTableEntity[] } = {
+  entities: any = {
     chef: [],
     dish: [],
     restaurant: []
   }
 
-  currentTableType: TableType
+  currentTableType!: TableType
+
+  entityToEditId: string = ''
 
   isModalOpen = false;
 
@@ -59,6 +54,8 @@ export class AdminPageComponent implements OnInit {
       ingredients: ['', Validators.required],
       price: [10, Validators.required],
       imgUrl: [''],
+      restaurant: [null, Validators.required],
+      idSignature: false,
       types: this.fb.group({
         spicy: [false],
         vegan: [false],
@@ -75,52 +72,76 @@ export class AdminPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(({ entity }) => {
-      console.log(entity);
-
       this.currentTableType = entity
     })
     this.initializeTables()
   }
 
   initializeTables() {
+    this.chefService.loadChefs()
+    this.dishService.loadDishes()
+    this.restaurantService.loadRestaurants()
     const allEntities$ = combineLatest([
       this.chefService.chefs$,
       this.dishService.dishes$,
       this.restaurantService.restaurants$
     ])
     allEntities$.subscribe(([chefs, dishes, restaurants]) => {
-      const formattedChefs = this.formatService.formatChefsForAdminTable(chefs, { about: true, restaurants: true })
-      const formattedDishes = this.formatService.formatChefsForAdminTable(dishes, { restaurant: true, ingredients: true, price: true, types: true })
-      const formattedRestaurants = this.formatService.formatChefsForAdminTable(restaurants, { chef: true, dishes: true })
       this.entities = {
-        chef: formattedChefs,
-        dish: formattedDishes,
-        restaurant: formattedRestaurants
+        chef: chefs,
+        dish: dishes,
+        restaurant: restaurants
       }
     }, (err) => {
       console.log(err);
     })
   }
 
-  onOpenModal() {
+  onRefreshTables() {
+    window.location.reload();
+  }
+
+  onOpenModal(entityId?: any) {
+    if (entityId) {
+      this.entityToEditId = entityId
+      const entity = this.entities[this.currentTableType].find((item: any) => item._id === entityId)
+      const formattedEntity = this.formatService.formatItemForEdit(entity, this.currentTableType)
+      this.currentForm.setValue(formattedEntity)
+    }
     this.isModalOpen = true;
   }
 
   onCloseModal() {
     this.isModalOpen = false;
+    this.entityToEditId = ''
     this.editForms[this.currentTableType].reset()
   }
 
   get currentTableItems() {
+    // let filters
+    // switch (this.currentTableType) {
+    //   case 'chef':
+    //     filters = { about: true, restaurants: true }
+    //     break;
+    //   case 'dish':
+    //     filters = { restaurant: true, ingredients: true, price: true, types: true }
+    //     break;
+    //   case 'restaurant':
+    //     filters = { chef: true, dishes: true }
+    //     break;
+    //   default:
+    //     break;
+    // }
+    // return this.formatService.formatChefsForAdminTable(this.entities[this.currentTableType], filters)
     return this.entities[this.currentTableType]
   }
 
   get currentTableHeader() {
     switch (this.currentTableType) {
       case 'chef':
-        return ['Name', 'Restaurants', 'About', 'Actions']
+        return ['Name', 'About', 'Restaurants', 'Actions']
       case 'dish':
-        return ['Name', 'Restaurant', 'Types', 'Ingredients', 'Price', 'Actions']
+        return ['Name', 'Restaurant', 'Ingredients', 'Price', 'Types', 'Actions']
       case 'restaurant':
         return ['Name', 'Head chef', 'Dishes', 'Actions']
       default:
@@ -132,33 +153,22 @@ export class AdminPageComponent implements OnInit {
     return this.editForms[this.currentTableType]
   }
 
-  onFormSubmit() {
-    switch (this.currentTableType) {
-      case 'chef':
-        this.onAddChef()
-        break
-      case 'dish':
-        console.log(this.editForms.dish);
-        break
-      case 'restaurant':
-        console.log(this.editForms.restaurant);
-        break
-      default:
-        break
-    }
-  }
-
-  onAddChef() {
-    const formData = this.editForms.chef.value
-    this.chefService.addChef(formData, () => {
-      this.onCloseModal()
-    })
-  }
-
   onDeleteItem(itemId: any) {
     const confirmation = confirm(`Are you sure you want to delete this ${this.currentTableType}?`)
     if (confirmation) {
-      this.chefService.deleteChef(itemId)
+      switch (this.currentTableType) {
+        case 'chef':
+          this.chefService.deleteChef(itemId)
+          break;
+        case 'dish':
+          this.dishService.deleteDish(itemId)
+          break;
+        case 'restaurant':
+          this.restaurantService.deleteRestaurant(itemId)
+          break;
+        default:
+          break;
+      }
     }
   }
 }

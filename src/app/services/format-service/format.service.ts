@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ColumnModel } from 'src/app/models/admin-table/ColumnModel';
+import { TableType } from 'src/app/models/admin-table/TableType';
 import { ChefModel } from 'src/app/models/chef/ChefModel';
 import { DishModel } from 'src/app/models/dish/DishModel';
 import { RestaurantModel } from 'src/app/models/restaurant/RestaurantModel';
@@ -37,15 +38,15 @@ export class FormatService {
             }
           }
           if (this.checkIsObjectLiteral(value)) {
-            
+
             if (key === 'price') {
               console.log(this.checkIsObjectLiteral(value));
               console.log(value);
-  
+
             }
             columnValue = value?.name || ''
           }
-          
+
           const column: ColumnModel = {
             columnName,
             columnType,
@@ -61,15 +62,52 @@ export class FormatService {
     })
   }
 
+  formatItemForEdit(item: any, type: TableType): any {
+    let newItem
+    switch (type) {
+      case 'chef':
+        newItem = {
+          name: item.name,
+          about: item.about,
+          imgUrl: item.imgUrl,
+        }
+        break;
+      case 'dish':
+        newItem = {
+          name: item.name,
+          ingredients: item.ingredients,
+          price: item.price,
+          imgUrl: item.imgUrl,
+          restaurant: item.restaurant,
+          idSignature: false,
+          types: {
+            spicy: Boolean(item.types.includes('spicy')),
+            vegan: Boolean(item.types.includes('vegan')),
+            vegeterian: Boolean(item.types.includes('vegeterian'))
+          }
+        }
+        break;
+      case 'restaurant':
+        newItem = {
+          name: item.name,
+          chef: item.chef || null,
+          imgUrl: item.imgUrl,
+        }
+        break;
+      default:
+        break;
+    }
+    return newItem
+  }
 
-  checkIsObjectLiteral(value: any) {
+  private checkIsObjectLiteral(value: any) {
     return !Array.isArray(value) && typeof value === 'object'
   }
-  checkIsArrayOfStrings(arr: any[]) {
+  private checkIsArrayOfStrings(arr: any[]) {
     return arr.every(value => typeof value === 'string')
   }
 
-  checkIsArrayOfObjects(arr: any[]) {
+  private checkIsArrayOfObjects(arr: any[]) {
     return arr.every(value => typeof value === 'object')
   }
 }

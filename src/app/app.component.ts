@@ -18,9 +18,6 @@ export class AppComponent {
   title = 'epicure';
   constructor(
     private dataService: DataService,
-    private chefService: ChefService,
-    private dishService: DishService,
-    private restaurantService: RestaurantService,
     private _router: Router
   ) {
     this.router = this._router
@@ -30,9 +27,7 @@ export class AppComponent {
   // isAnimationDisabled = !this.dataService.isMobile
 
   ngOnInit() {
-    this.chefService.loadChefs()
-    this.dishService.loadDishes()
-    this.restaurantService.loadRestaurants()
+    
   }
 
   prepareRoute(outlet: RouterOutlet) {

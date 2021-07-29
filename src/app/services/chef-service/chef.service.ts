@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { shareReplay, take, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, shareReplay, take, tap } from 'rxjs/operators';
 import { ColumnModel } from 'src/app/models/admin-table/ColumnModel';
 import { ChefModel } from 'src/app/models/chef/ChefModel';
 import { ChefOfTheWeek } from 'src/app/models/chef/ChefOfTheWeek';
@@ -22,6 +22,10 @@ export class ChefService {
     return this.http.get<ChefModel>(`${this.BASE_URL}/chef-of-the-week`)
   }
 
+  refreshTable() {
+    window.location.reload();
+  }
+
   loadChefs(): void {
     this.http.get<ChefModel[]>(this.BASE_URL).pipe(
       tap(chefs => {
@@ -32,13 +36,14 @@ export class ChefService {
     ).subscribe(res => 'Fetched successfully')
   }
 
-  addChef(chefData: ChefModel, cb?: Function) {
+  saveChef(chefData: ChefModel, cb?: Function) {
     this.http.post<ChefModel>(this.BASE_URL, chefData).pipe(
       take(1)
     ).subscribe(newChef => {
       if (newChef) {
-        const newChefs = [...this.chefsSubject.getValue(), newChef]
-        this.chefsSubject.next(newChefs)
+        // const newChefs = [...this.chefsSubject.getValue(), newChef]
+        // this.chefsSubject.next(newChefs)
+        this.refreshTable()
         if (cb) cb()
       }
     }, (err) => {
@@ -51,8 +56,9 @@ export class ChefService {
       take(1)
     ).subscribe(success => {
       if (success) {
-        const newChefs = this.chefsSubject.getValue().filter((chef: ChefModel) => chef._id !== chefId)
-        this.chefsSubject.next(newChefs)
+        // const newChefs = this.chefsSubject.getValue().filter((chef: ChefModel) => chef._id !== chefId)
+        // this.chefsSubject.next(newChefs)
+        this.refreshTable()
         if (cb) cb()
       }
     }, (err) => {

@@ -17,16 +17,18 @@
           [tableType]="currentTableType"
           [item]="item"
           (deleteItem)="onDeleteItem($event)"
+          (editItem)="onOpenModal($event)"
         ></app-admin-table-row>
       </tbody>
     </table>
   </div>
 </div>
+<!-- <router-outlet></router-outlet> -->
 <app-add-entity-modal
   [isOpen]="isModalOpen"
   [formType]="currentTableType"
   (closeModal)="onCloseModal()"
   [form]="currentForm"
-  [items]="currentTableItems"
-  (formSubmit)="onFormSubmit()"
+  [entities]="entities"
+  [entityId]="entityToEditId"
 ></app-add-entity-modal>

@@ -18,29 +18,26 @@
   z-index: 5;
 
   & form {
-    & *:not(:last-child) {
-      margin-bottom: 8px;
-    }
-
     & label {
+      &:not(:first-child) {
+        margin-top: 16px;
+      }
       font-weight: 300;
-      &::first-letter{
+      &::first-letter {
         text-transform: uppercase;
       }
-      & input {
-        margin-top: 8px;
-      }
     }
 
-    & input:not([type="checkbox"]),textarea {
+    & input:not([type="checkbox"]),
+    textarea {
       @extend .custom-input;
       width: 100%;
       padding: 2px 8px;
     }
 
-    & .submit-btn{
+    & .submit-btn {
       margin-top: 16px;
-      @include custom-button($dark-peach,$white)
+      @include custom-button($dark-peach, $white);
     }
   }
 }
