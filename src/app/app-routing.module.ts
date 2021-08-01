@@ -15,8 +15,8 @@ const routes: Routes = [
     path: "admin", redirectTo: 'admin/chef', pathMatch: "full"
   },
   {
-    path: "admin/:entity", component: AdminPageComponent, pathMatch: "full", data: { animation: 'Admin' }
-    // path: "admin/:entity", component: AdminPageComponent, canActivate: [AuthGuard], pathMatch: "full", data: { animation: 'Admin' }
+    // path: "admin/:entity", component: AdminPageComponent, pathMatch: "full", data: { animation: 'Admin' }
+    path: "admin/:entity", component: AdminPageComponent, canActivate: [AuthGuard], pathMatch: "full", data: { animation: 'Admin' }
   },
 ];
 

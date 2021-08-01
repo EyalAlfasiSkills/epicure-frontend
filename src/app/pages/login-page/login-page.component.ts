@@ -25,10 +25,8 @@ export class LoginPageComponent implements OnInit {
   onSubmit(): void {
     if (this.email && this.password) {
       this.auth.login({ password: this.password, email: this.email }).subscribe((userData) => {
-        console.log(userData);
         const { accessToken, refreshToken, idToken } = userData.response.token
         if (accessToken && refreshToken) {
-          console.log('Logged in successfully');
           this.router.navigate(['admin'])
         }
       }, (err) => {

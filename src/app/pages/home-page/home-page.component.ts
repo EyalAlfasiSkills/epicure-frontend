@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { popularDishes, signatureDishes } from 'src/app/helpers';
 import { DishModel } from 'src/app/models/dish/DishModel';
 import { RestaurantModel } from 'src/app/models/restaurant/RestaurantModel';
 import { DishService } from 'src/app/services/dish-service/dish.service';

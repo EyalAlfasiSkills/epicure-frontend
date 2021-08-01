@@ -25,11 +25,8 @@ export class AuthService {
   ) { }
 
   login(credentials: Credentials): Observable<SuccessfulLoginObject> {
-    console.log(credentials);
-
     return this.http.post<SuccessfulLoginObject>(`${this.BASE_URL}/login`, credentials).pipe(
       tap((userData) => {
-        console.log(userData);
         const { accessToken, refreshToken, idToken } = userData.response.token
         if (userData.response.token.accessToken) {
           this.setAccessToken(accessToken)

@@ -38,12 +38,6 @@ export class FormatService {
             }
           }
           if (this.checkIsObjectLiteral(value)) {
-
-            if (key === 'price') {
-              console.log(this.checkIsObjectLiteral(value));
-              console.log(value);
-
-            }
             columnValue = value?.name || ''
           }
 
