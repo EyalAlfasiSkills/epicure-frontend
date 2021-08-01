@@ -10,7 +10,7 @@ import { ColumnModel } from 'src/app/models/admin-table/ColumnModel';
 })
 export class RestaurantService {
 
-  private BASE_URL = 'http://localhost:3000/api/restaurant';
+  private BASE_URL = 'http://localhost:3030/api/restaurant';
 
   private restaurantsSubject: BehaviorSubject<RestaurantModel[]> = new BehaviorSubject<RestaurantModel[]>([])
   public restaurants$: Observable<RestaurantModel[]> = this.restaurantsSubject.asObservable()
