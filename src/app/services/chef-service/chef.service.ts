@@ -11,7 +11,7 @@ import { ChefOfTheWeek } from 'src/app/models/chef/ChefOfTheWeek';
 })
 export class ChefService {
 
-  private BASE_URL = 'http://localhost:3030/api/chef';
+  private BASE_URL = 'http://localhost:3000/api/chef';
 
   private chefsSubject: BehaviorSubject<ChefModel[]> = new BehaviorSubject<ChefModel[]>([])
   public chefs$: Observable<ChefModel[]> = this.chefsSubject.asObservable()

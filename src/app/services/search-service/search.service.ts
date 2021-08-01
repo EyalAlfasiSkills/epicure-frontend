@@ -9,7 +9,7 @@ import { SearchResults } from 'src/app/models/search-results/SearchResults';
 })
 export class SearchService {
 
-  private BASE_URL = 'http://localhost:3030/api/search';
+  private BASE_URL = 'http://localhost:3000/api/search';
 
   // searchResultsSubject: BehaviorSubject<SearchResults> = new BehaviorSubject<any>(null)
   // searchResults$: Observable<SearchResults> = this.searchResultsSubject.asObservable()

@@ -13,7 +13,7 @@ import { StorageService } from '../storage-service/storage.service';
 })
 export class AuthService {
 
-  private BASE_URL = 'http://localhost:3030/api/auth';
+  private BASE_URL = 'http://localhost:3000/api/auth';
   private ACCESS_TOKEN_STORAGE_KEY = "ACCESS_TOKEN_DB"
   private REFRESH_TOKEN_STORAGE_KEY = "REFRESH_TOKEN_DB"
   private LOGGED_IN_USER_SESSION_KEY = "LOGGED_IN_USER"

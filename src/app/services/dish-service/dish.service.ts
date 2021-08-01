@@ -10,7 +10,7 @@ import { DishModel } from 'src/app/models/dish/DishModel';
 })
 export class DishService {
 
-  private BASE_URL = 'http://localhost:3030/api/dish';
+  private BASE_URL = 'http://localhost:3000/api/dish';
 
   private dishesSubject: BehaviorSubject<DishModel[]> = new BehaviorSubject<DishModel[]>([])
   public dishes$: Observable<DishModel[]> = this.dishesSubject.asObservable()

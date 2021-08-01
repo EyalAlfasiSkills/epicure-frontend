@@ -23,7 +23,7 @@ export class TokenInterceptor implements HttpInterceptor {
     private router: Router
   ) { }
 
-  private REFRESH_URL = 'http://localhost:3030/api/auth/refresh-token'
+  private REFRESH_URL = 'http://localhost:3000/api/auth/refresh-token'
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -53,10 +53,12 @@ export class TokenInterceptor implements HttpInterceptor {
     return this.http.post<any>(this.REFRESH_URL, { refreshToken: this.auth.getRefreshToken() }).pipe(
       catchError<any, any>(err => {
         if (err instanceof HttpErrorResponse && err.status === 401) {
-          return throwError(err)
+          this.router.navigate(['login'])
+          return
         }
-        return
+        return throwError(err)
       }),
+
       tap({
         next: res => this.auth.setAccessToken(res.accessToken)
       })
